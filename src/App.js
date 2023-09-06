@@ -1,21 +1,27 @@
+import { useEffect, useState } from 'react';
+import sanityClient from "./client";
 import './App.css';
 
 function App() {
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "pet"]{
+          _id,
+          name,
+        }`
+      )
+      .then((data) => setPets(data))
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {pets.map(({ _id, name }) => {
+        return <h1 key={_id}>{name}</h1>
+      })}
     </div>
   );
 }
