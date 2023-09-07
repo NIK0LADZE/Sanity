@@ -1,3 +1,5 @@
+import uniqueEntity from "../validations/uniqueEntity";
+
 export default {
   name: 'category',
   type: 'document',
@@ -10,6 +12,7 @@ export default {
       validation: Rule => [
         Rule.required(),
         Rule.min(3),
+        uniqueEntity(Rule, 'category'),
       ]
     },
   ],

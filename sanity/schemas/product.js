@@ -1,4 +1,5 @@
 import { defineArrayMember } from "sanity";
+import uniqueEntity from "../validations/uniqueEntity";
 
 export default {
   name: 'product',
@@ -12,6 +13,7 @@ export default {
       validation: Rule => [
         Rule.required(),
         Rule.min(5),
+        uniqueEntity(Rule, 'name', 'Product with this name already exits'),
       ]
     },
     {
@@ -21,6 +23,7 @@ export default {
       validation: Rule => [
         Rule.required(),
         Rule.min(5),
+        uniqueEntity(Rule, 'sku', 'Product with this SKU already exits'),
       ]
     },
     {

@@ -1,3 +1,5 @@
+import uniqueEntity from '../validations/uniqueEntity';
+
 export default {
   name: 'manufacturer',
   type: 'document',
@@ -10,6 +12,7 @@ export default {
       validation: Rule => [
         Rule.required(),
         Rule.min(2),
+        uniqueEntity(Rule, 'manufacturer'),
       ]
     },
   ],
