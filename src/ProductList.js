@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import sanityClient from "./client";
 import Pagination from "./Pagination";
+import { urlFor } from "./sanity.image";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,11 @@ const ProductList = () => {
           _id,
           name,
           sku,
-          manufacture_date
+          manufacture_date,
+          poster,
+          image{
+            "palette": asset->metadata.palette
+          }
         }`,
         { lastId }
       );
@@ -44,9 +49,13 @@ const ProductList = () => {
 
   return (
     <div className="col-span-10 flex flex-wrap">
-      {products.map(({ _id, name, sku, manufacture_date }) => {
+      {products.map(({ _id, name, sku, manufacture_date, poster }) => {
+        const { caption } = poster;
+        const imageUrl = urlFor(poster).height(500).width(400).sharpen(50);
+
         return (
           <div key={_id} className="w-1/4 p-4">
+            <img src={imageUrl} alt={caption} />
             <div className="p-2 border">
               <div className="flex m-1 gap-x-1">
                 <p>Product Name:</p>
