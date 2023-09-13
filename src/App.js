@@ -1,21 +1,17 @@
+import Header from './Header';
+import Manufacturer from './Manufacturer';
+
 import './App.css';
+import ProductList from './ProductList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <div className='mt-20 grid grid-cols-12'>
+        <Manufacturer />
+        <ProductList />
+      </div>
     </div>
   );
 }
