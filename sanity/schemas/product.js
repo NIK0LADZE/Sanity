@@ -21,6 +21,7 @@ export default {
       name: 'sku',
       type: 'string',
       title: 'Product SKU',
+      hidden: ({ document: { name } }) => !name,
       validation: Rule => [
         Rule.required(),
         Rule.min(5),
