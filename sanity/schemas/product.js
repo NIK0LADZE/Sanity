@@ -1,4 +1,5 @@
 import { defineArrayMember } from "sanity";
+import { CustomTextArea } from "../components/CustomTextArea";
 import uniqueEntity from "../validations/uniqueEntity";
 
 export default {
@@ -47,6 +48,9 @@ export default {
       title: 'Product Description',
       name: 'description',
       type: 'text',
+      components: {
+        input: CustomTextArea
+      },
       validation: Rule => [
         Rule.required(),
         Rule.min(100)
