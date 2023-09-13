@@ -53,7 +53,7 @@ export default {
       },
       validation: Rule => [
         Rule.required(),
-        Rule.min(100)
+        Rule.max(500)
       ]
     },
     {
