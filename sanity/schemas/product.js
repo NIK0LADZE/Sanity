@@ -11,6 +11,9 @@ export default {
       name: 'name',
       type: 'string',
       title: 'Product Name',
+      readOnly: ({currentUser}) => {
+        return !(currentUser.roles.find(({name}) => name === 'administrator'))
+      },
       validation: Rule => [
         Rule.required(),
         Rule.min(5),
@@ -22,6 +25,9 @@ export default {
       type: 'string',
       title: 'Product SKU',
       hidden: ({ document: { name } }) => !name,
+      readOnly: ({currentUser}) => {
+        return !(currentUser.roles.find(({name}) => name === 'administrator'))
+      },
       validation: Rule => [
         Rule.required(),
         Rule.min(5),
