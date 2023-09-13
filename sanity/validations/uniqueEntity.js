@@ -5,6 +5,6 @@ export default (Rule, name, customErrorText = '') => {
         const { document: { _id } } = context;
         const docs = await client.fetch(`*[${name} == $value]`, { value });
         const errorText = customErrorText ? customErrorText : `This ${name} already exists`;
-        return docs.length > 0 && _id.includes('drafts') ? errorText : true;
+        return docs.length > 0 && !_id.includes(docs[0]._id) ? errorText : true;
     });
 };
